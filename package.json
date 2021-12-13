@@ -1,0 +1,23 @@
+{
+  "name": "sakiynat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.abutech.uz:sakinat/backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sequelize-cli": "^6.3.0"
+  },
+  "dependencies": {
+    "pg": "^8.7.1",
+    "sequelize": "^6.12.0-beta.3"
+  }
+}
