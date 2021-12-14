@@ -7,14 +7,7 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      models.User.hasOne(models.Baskets, {
-        foreignKey: 'UserId',
-        as: 'users',
-        onDelete: 'cascade',
-        hooks: true
-      });
-    }
+  
   }
 
   User.init(
