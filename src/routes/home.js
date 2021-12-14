@@ -1,7 +1,8 @@
-const express = require("express");
-const ctrl = require("../controllers/HomeController");
+const express = require('express');
+const ctrl = require('../controllers/HomeController');
+
 const router = express.Router({ mergeParams: true });
 
-router.get("/", ctrl.home);
+router.get('/', ctrl.home);
 
-module.exports = router
+module.exports = router;
