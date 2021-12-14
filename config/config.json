@@ -3,8 +3,9 @@
     "username": "postgres",
     "password": "123456",
     "database": "sakiynat",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "host": "localhost",
+    "dialect": "postgres",
+    "debug":true
   },
   "test": {
     "username": "root",
