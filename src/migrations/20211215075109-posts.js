@@ -1,16 +1,6 @@
-const { Model } = require('sequelize');
-
-module.exports = (sequelize, DataTypes) => {
-  class Post extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-  }
-
-  Post.init(
-    {
+module.exports = {
+  up: async (queryInterface, DataTypes) => {
+    await queryInterface.createTable('posts', {
       id: {
         allowNull: false,
         type: DataTypes.UUID,
@@ -18,9 +8,10 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: DataTypes.UUIDV4
       },
       authorId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        allowNull: false,
         references: {
-          model: 'User',
+          model: 'users',
           key: 'id'
         }
       },
@@ -50,12 +41,9 @@ module.exports = (sequelize, DataTypes) => {
       publishedAt: {
         type: DataTypes.DATE
       }
-    },
-    {
-      sequelize,
-      tableName: 'posts',
-      modelName: 'Post'
-    }
-  );
-  return Post;
+    });
+  },
+  down: async (queryInterface) => {
+    await queryInterface.dropTable('posts');
+  }
 };
