@@ -1,8 +1,12 @@
-const pg = require('../utils/pg');
+const { Post } = require('../models');
 
 async function getPosts() {
   try {
-    return await pg(false, 'SELECT * FROM posts WHERE published=true');
+    return await Post.findAll({
+      where: {
+        published: true
+      }
+    });
   } catch (error) {
     throw Error(`posts repository [getPosts]:${error}`);
   }
@@ -10,23 +14,25 @@ async function getPosts() {
 
 async function getPost(id) {
   try {
-    return await pg(false, 'SELECT * FROM posts WHERE id=$1 and published=true', id);
+    return await Post.findAll({
+      where: {
+        id
+      }
+    });
   } catch (error) {
-    throw Error(`posts repository [getPosts]:${error}`);
+    throw Error(`posts repository [getPost]:${error}`);
   }
 }
 
 async function addPost(author_id, title, cover_img, duration, content) {
   try {
-    return await pg(
-      false,
-      'INSERT INTO posts (author_id, title, cover_img, duration, content) VALUES($1, $2, $3, $4, $5) returning *',
+    return await Post.create({
       author_id,
       title,
       cover_img,
       duration,
       content
-    );
+    });
   } catch (error) {
     throw Error(`posts repository [addPost]:${error}`);
   }
@@ -34,7 +40,14 @@ async function addPost(author_id, title, cover_img, duration, content) {
 
 async function deletePost(id) {
   try {
-    return await pg(false, 'UPDATE posts set published=false where id=$1 returning *;', id);
+    return await Post.update(
+      { published: false },
+      {
+        where: {
+          id
+        }
+      }
+    );
   } catch (error) {
     throw Error(`posts repository [deletePost]:${error}`);
   }
@@ -42,13 +55,16 @@ async function deletePost(id) {
 
 async function updatePost(title, cover_img, content, id) {
   try {
-    return await pg(
-      false,
-      'UPDATE posts set title=$1, cover_img=$2, content=$3 where id = $4 returning *;',
-      title,
-      cover_img,
-      content,
-      id
+    return await Post.update(
+      // prettier-ignore
+      {
+        title, cover_img, content, id
+      },
+      {
+        where: {
+          id
+        }
+      }
     );
   } catch (error) {
     throw Error(`posts repository [updatePost]:${error}`);

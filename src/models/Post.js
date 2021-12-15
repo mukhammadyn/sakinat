@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4
       },
-      authorId: {
+      author_id: {
         type: DataTypes.INTEGER,
         references: {
           model: 'User',
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      coverImg: {
+      cover_img: {
         type: DataTypes.STRING,
         allowNull: false
       },
@@ -39,20 +39,11 @@ module.exports = (sequelize, DataTypes) => {
       published: {
         type: DataTypes.BOOLEAN,
         defaultValue: true
-      },
-      createdAt: {
-        type: DataTypes.DATE,
-        defaultValue: new Date()
-      },
-      updatedAt: {
-        type: DataTypes.DATE
-      },
-      publishedAt: {
-        type: DataTypes.DATE
       }
     },
     {
       sequelize,
+      timestamps: true,
       tableName: 'posts',
       modelName: 'Post'
     }

@@ -34,11 +34,11 @@ module.exports = {
         type: DataTypes.BOOLEAN,
         defaultValue: true
       },
-      created_at: {
+      createdAt: {
         type: DataTypes.DATE,
         defaultValue: new Date()
       },
-      updated_at: {
+      updatedAt: {
         type: DataTypes.DATE,
         defaultValue: new Date()
       }
