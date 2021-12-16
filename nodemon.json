@@ -3,5 +3,5 @@
   "watch": ["src"],
   "ext": ".js,.ejs",
   "ignore": [],
-  "exec": "NODE_ENV=dev node ./src/server.js"
+  "exec": "NODE_ENV=development node ./src/server.js"
 }

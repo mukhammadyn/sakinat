@@ -7,7 +7,7 @@ module.exports = {
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4
       },
-      authorId: {
+      author_id: {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
@@ -19,9 +19,12 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false
       },
-      coverImg: {
+      cover_img: {
         type: DataTypes.STRING,
         allowNull: false
+      },
+      duration: {
+        type: DataTypes.INTEGER
       },
       content: {
         type: DataTypes.TEXT,
@@ -36,10 +39,8 @@ module.exports = {
         defaultValue: new Date()
       },
       updatedAt: {
-        type: DataTypes.DATE
-      },
-      publishedAt: {
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
+        defaultValue: new Date()
       }
     });
   },
