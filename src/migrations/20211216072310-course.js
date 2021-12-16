@@ -1,38 +1,39 @@
 module.exports = {
-  up: async (queryInterface, DataTypes) => {
+  up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('courses', {
       id: {
         allowNull: false,
-        type: DataTypes.UUID,
+        type: Sequelize.UUID,
         primaryKey: true,
-        defaultValue: DataTypes.UUIDV4
+        defaultValue: Sequelize.UUIDV4
       },
       title: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         notNull: false
       },
       description: {
-        type: DataTypes.STRING(15),
+        type: Sequelize.STRING(15),
         max: 12,
         unique: true,
         notNull: false
       },
       active: {
-        type: DataTypes.BOOLEAN,
+        type: Sequelize.BOOLEAN,
         defaultValue: false
       },
       createdAt: {
         allowNull: false,
-        type: DataTypes.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
       },
       updatedAt: {
         allowNull: false,
-        type: DataTypes.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
       }
     });
   },
-
   down: async (queryInterface) => {
-    queryInterface.dropTable('courses');
+    await queryInterface.dropTable('courses');
   }
 };
