@@ -1,14 +1,17 @@
 <%- include('../templates/head')-%>
+    <link rel="stylesheet" href="/css/post.css">
+</head>
+
 <body class="text-center">
   <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
       <main role="main" class="inner cover">
         <h1 class="cover-heading">Home</h1>
         <div class="grid">
           <% for (let post of posts) { %>
-          <article class="card product-item">
+          <article class="card post-item">
               <header class="card__header">
                   <span><%= post.id %></span>
-                  <h1 class="product__title"><%= post.title %></h1>
+                  <h1 class="post__title"><%= post.title %></h1>
               </header>
           </article>
           <% } %>
