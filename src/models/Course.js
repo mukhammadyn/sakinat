@@ -1,44 +1,41 @@
-// const { Model } = require('sequelize');
+const { Model } = require('sequelize');
 
-// module.exports = (sequelize, DataTypes) => {
-//   class Course extends Model {
-//     /**
-//      * Helper method for defining associations.
-//      * This method is not a part of Sequelize lifecycle.
-//      * The `models/index` file will call this method automatically.
-//      */
-//     static associate(models) {
-//       // define association here
-//     }
-//   }
-//   Course.init(
-//     {
-//       id: {
-//         allowNull: false,
-//         type: DataTypes.UUID,
-//         primaryKey: true,
-//         defaultValue: DataTypes.UUIDV4
-//       },
-//       title: {
-//         type: DataTypes.STRING,
-//         notNull: false
-//       },
-//       description: {
-//         type: DataTypes.STRING(15),
-//         max: 12,
-//         unique: true,
-//         notNull: false
-//       },
-//       active: {
-//         type: DataTypes.BOOLEAN,
-//         defaultValue: false
-//       },
-//     },
-//     {
-//       sequelize,
-//       tableName: 'courses',
-//       modelName: 'Course'
-//     }
-//   );
-//   return Course;
-// };
+module.exports = (sequelize, DataTypes) => {
+  class Course extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+  }
+  Course.init(
+    {
+      id: {
+        allowNull: false,
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4
+      },
+      title: {
+        type: DataTypes.STRING,
+        notNull: false
+      },
+      description: {
+        type: DataTypes.STRING(15),
+        max: 12,
+        unique: true,
+        notNull: false
+      },
+      active: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
+      },
+    },
+    {
+      sequelize,
+      tableName: 'courses',
+      modelName: 'Course'
+    }
+  );
+  return Course;
+};
