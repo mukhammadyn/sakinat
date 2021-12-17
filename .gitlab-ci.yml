@@ -1,0 +1,75 @@
+
+stages:
+  - info
+  - lint
+  - migration
+  - seed
+  - deploy
+
+
+
+system_info:
+  stage: info 
+  only: 
+    - dev
+  script:
+  - echo $USER 
+  - echo $PWD
+  - curl ipinfo.io
+  allow_failure: true
+ 
+lint:
+  stage: lint
+  only:
+    - dev
+  script:
+    - npm install
+    - npm run lint
+
+migration:
+  stage: migration
+  only:
+    - dev
+  script:
+    - cat "$SAKINAT_ENV" > "$(pwd)/.env"
+    - cat "$SAKINAT_CONFIG" > "$(pwd)/config/config.json"
+    - npm install
+    - npm run db:migrate
+  when: manual
+
+seed:
+  stage: seed
+  only:
+    - dev
+  script:
+    - cat "$SAKINAT_ENV" > "$(pwd)/.env"
+    - cat "$SAKINAT_CONFIG" > "$(pwd)/config/config.json"
+    - npm install
+    - npm run db:migrate
+  when: manual
+
+deploy-restart: 
+  stage: deploy 
+  only: 
+    - dev
+  allow_failure: true
+  script:
+    - echo "Deployment started..."
+    - cat "$SAKINAT_ENV" > "$(pwd)/.env"
+    - cat "$SAKINAT_CONFIG" > "$(pwd)/config/config.json"
+    - npm install 
+    - echo "restarting server.js..."
+    - pm2 restart ./src/server.js
+
+deploy-start:
+  stage: deploy 
+  only:
+    - dev 
+  allow_failure: true
+  script:
+    - echo "Deployment started..."
+    - cat "$SAKINAT_ENV" > "$(pwd)/.env"
+    - cat "$SAKINAT_CONFIG" > "$(pwd)/config/config.json"
+    - npm install 
+    - echo "starting server.js..."
+    - pm2 start ./src/server.js --name sakinatBackend

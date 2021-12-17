@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         notNull: false
       },
       description: {
-        type: DataTypes.STRING(15),
+        type: DataTypes.TEXT,
         max: 12,
         unique: true,
         notNull: false
