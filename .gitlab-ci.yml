@@ -59,17 +59,17 @@ deploy-restart:
     - cat "$SAKINAT_CONFIG" > "$(pwd)/config/config.json"
     - npm install 
     - echo "restarting server.js..."
-    - pm2 restart ./src/server.js
+    - pm2 reload sakinatBackend
 
-deploy-start:
-  stage: deploy 
-  only:
-    - dev 
-  allow_failure: true
-  script:
-    - echo "Deployment started..."
-    - cat "$SAKINAT_ENV" > "$(pwd)/.env"
-    - cat "$SAKINAT_CONFIG" > "$(pwd)/config/config.json"
-    - npm install 
-    - echo "starting server.js..."
-    - pm2 start ./src/server.js --name sakinatBackend
+# deploy-start:
+#   stage: deploy 
+#   only:
+#     - dev 
+#   allow_failure: true
+#   script:
+#     - echo "Deployment started..."
+#     - cat "$SAKINAT_ENV" > "$(pwd)/.env"
+#     - cat "$SAKINAT_CONFIG" > "$(pwd)/config/config.json"
+#     - npm install 
+#     - echo "starting server.js..."
+#     - pm2 reload sakinatBackend
