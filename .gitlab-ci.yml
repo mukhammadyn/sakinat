@@ -6,6 +6,8 @@ stages:
   - seed
   - deploy
 
+
+
 system_info:
   stage: info 
   only: 
@@ -30,6 +32,7 @@ migration:
     - dev
   script:
     - cat "$SAKINAT_ENV" > "$(pwd)/.env"
+    - cat "$SAKINAT_CONFIG" > "$(pwd)/config/config.json"
     - npm install
     - npm run db:migrate
   when: manual
@@ -40,6 +43,7 @@ seed:
     - dev
   script:
     - cat "$SAKINAT_ENV" > "$(pwd)/.env"
+    - cat "$SAKINAT_CONFIG" > "$(pwd)/config/config.json"
     - npm install
     - npm run db:migrate
   when: manual
@@ -52,6 +56,7 @@ deploy-restart:
   script:
     - echo "Deployment started..."
     - cat "$SAKINAT_ENV" > "$(pwd)/.env"
+    - cat "$SAKINAT_CONFIG" > "$(pwd)/config/config.json"
     - npm install 
     - echo "restarting server.js..."
     - pm2 restart ./src/server.js
@@ -64,6 +69,7 @@ deploy-start:
   script:
     - echo "Deployment started..."
     - cat "$SAKINAT_ENV" > "$(pwd)/.env"
+    - cat "$SAKINAT_CONFIG" > "$(pwd)/config/config.json"
     - npm install 
     - echo "starting server.js..."
     - pm2 start ./src/server.js --name sakinatBackend
