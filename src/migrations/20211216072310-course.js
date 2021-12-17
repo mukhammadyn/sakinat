@@ -12,14 +12,14 @@ module.exports = {
         notNull: false
       },
       description: {
-        type: Sequelize.STRING(15),
+        type: Sequelize.TEXT,
         max: 12,
         unique: true,
         notNull: false
       },
       active: {
         type: Sequelize.BOOLEAN,
-        defaultValue: false
+        defaultValue: true
       },
       createdAt: {
         allowNull: false,
