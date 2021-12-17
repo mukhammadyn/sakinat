@@ -1,15 +1,14 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class Post extends Model {
+  class Course extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
   }
-
-  Post.init(
+  Course.init(
     {
       id: {
         allowNull: false,
@@ -17,36 +16,26 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4
       },
-      author_id: {
-        type: DataTypes.UUID,
-        references: {
-          model: 'User',
-          key: 'id'
-        }
-      },
       title: {
         type: DataTypes.STRING,
-        allowNull: false
+        notNull: false
       },
-      cover_img: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      content: {
+      description: {
         type: DataTypes.TEXT,
-        allowNull: false
+        max: 12,
+        unique: true,
+        notNull: false
       },
-      published: {
+      active: {
         type: DataTypes.BOOLEAN,
         defaultValue: true
-      }
+      },
     },
     {
       sequelize,
-      timestamps: true,
-      tableName: 'posts',
-      modelName: 'Post'
+      tableName: 'courses',
+      modelName: 'Course'
     }
   );
-  return Post;
+  return Course;
 };

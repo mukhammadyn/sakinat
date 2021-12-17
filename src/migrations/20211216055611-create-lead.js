@@ -1,25 +1,20 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('courses', {
+    await queryInterface.createTable('leads', {
       id: {
         allowNull: false,
         type: Sequelize.UUID,
         primaryKey: true,
         defaultValue: Sequelize.UUIDV4
       },
-      title: {
-        type: Sequelize.STRING,
-        notNull: false
+      full_name: {
+        type: Sequelize.STRING
       },
-      description: {
-        type: Sequelize.TEXT,
-        max: 12,
-        unique: true,
-        notNull: false
+      phone_number: {
+        type: Sequelize.STRING
       },
-      active: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: true
+      course_id: {
+        type: Sequelize.UUID
       },
       createdAt: {
         allowNull: false,
@@ -34,6 +29,6 @@ module.exports = {
     });
   },
   down: async (queryInterface) => {
-    await queryInterface.dropTable('courses');
+    await queryInterface.dropTable('leads');
   }
 };

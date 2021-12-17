@@ -1,17 +1,19 @@
+const { v4: uuidv4 } = require('uuid');
+
 module.exports = {
   up: async (queryInterface) => {
     await queryInterface.bulkInsert(
       'users',
       [
         {
-          id: 'd7b58176-049a-4f98-982a-722d07ec99b2',
+          id: uuidv4(),
           password: 'qwerty',
           phone_number: '998901234567',
           createdAt: '2021-08-18T05:58:03.618Z',
           updatedAt: '2021-08-18T05:58:03.618Z'
         },
         {
-          id: 'fc9a55d4-b814-4aa5-988b-f4922744f291',
+          id: uuidv4(),
           password: 'dcanario0',
           phone_number: '1948197649',
           createdAt: '2021-12-15',
