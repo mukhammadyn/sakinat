@@ -1,0 +1,26 @@
+.hero-heading {
+  font-family: $font-secondary;
+  font-weight: bold;
+  font-size: 86px;
+  line-height: 86px;
+  text-transform: uppercase;
+  color: $color-light;
+}
+
+@include breakpoint-down(820px) {
+
+  .hero-heading {
+    font-size: 66px;
+    line-height: 66px;
+  }
+
+}
+
+@include breakpoint-down(420px) {
+
+  .hero-heading {
+    font-size: 43px;
+    line-height: 43px;
+  }
+
+}
