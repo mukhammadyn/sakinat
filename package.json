@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon",
+    "start": "node ./src/server.js",
     "prod": "node ./src/server.js",
     "db:seed": "npx sequelize-cli db:seed:all",
     "db:migrate": "npx sequelize-cli db:migrate",
